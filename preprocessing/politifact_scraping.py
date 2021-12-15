@@ -58,8 +58,9 @@ def main(pagesToGet=683):
 	df.to_csv(save_fp, index=False)
 
 
-def filter_data(claims_df):
-	return claims_df
+def filter_data(df):
+	cond = ~df.Label.eq('full-flop') & ~df.Label.eq('half-flip') & ~df.Label.eq('no-flip')
+	return df[cond]
 
 if __name__ == "__main__":
 	main()

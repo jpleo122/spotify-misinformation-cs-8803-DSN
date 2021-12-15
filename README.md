@@ -2,19 +2,19 @@
 
 ## Abstract
 
+We propose a Natural Language Processing (NLP)-based approach to identify potentially misinformative claims in podcast transcripts. 
+The proposed system uses a sentence-level analysis of podcast transcripts and claims from a fact-checked database by encoding these into a latent space, which is then explored to search for pairs with high semantic similarity. 
+This approach resulted in SpotiFact, a dataset of more than 27 million similar pairs from the Spotify Podcast Dataset compiled to link stance (whether in agreement or not), out of which we manually label a subset of 1,200 claims from the top 3000 claims with highest similarity scores. 
+We find that although most matched pairs are unlikely to be directly related, results suggest facts and misinformation spread at roughly the same rate within Spotify podcasts. 
+In addition, we build a set of machine learning models that are able to automatically detect misinformation in podcast transcripts, out of which a SentenceBERT + Linear Classifier performs best with an AUC score of 0.67. 
+
 ## Overview
 
 This repo contains code written to explore misinformation within Spotify Podcasts. The contributers are Jonathan Leo, Omar Jiménez, and Abhijeet Tomar. This started off as a class project within the Georgia Tech class CS 8803, Data Science for Social Networks, taught by Dr. Srijan Kumar.
 
-Most of this projct is run using Google Colab. For this project we upgraded to Google Colab Pro ($9.99 per month), which allows for more GPU resources and more instance runtime, and Google One Basic ($1.99 per month), which upgrades Google Drive storage to 100 GB (compared to 15 GB). 
+The preprocessing step can be performed locally on your machine, but the rest of the steps require Google Colab and Google Drive. We used these tools due to limited computational and storage resources. For this project we upgraded to Google Colab Pro ($9.99 per month), which allows for more GPU resources and more instance runtime, and Google One Basic ($1.99 per month), which upgrades Google Drive storage to 100 GB (compared to 15 GB). 
 
-Our approach can be split into five phases. These are listed as directories within the top folder containing executable code for each phase of the project. After the code is run within a phase folder, there will be output in the form of a .txt file, .csv file, or .tsv (tab-seperated values) file. These outputs are used as inputs for phases down the line, and must be run consecutively according to the following partially ordered set to get the correct inputs and ouputs: 
-
-preprocessing --> claim_matching --> manual_labeling --> modeling or analysis --> modeling 
-
-The preprocessing step can be performed locally on your machine, but the rest of the steps require Google Colab and Google Drive. We used these tools due to limited computational and storage resources. 
-
-Steps to properly setup the folder structure within Google Drive is mentioned below.
+Steps to properly setup the folder structure within Google Drive is detailed below.
 
 ### Spotify Podcast Data
 
@@ -84,9 +84,9 @@ The individual datasets manually labeled by the authors are provided in the dire
 
 Once the manually labeled dataset is copied over or recreated, various models can be trained. We train 3 models which are described in the paper. Each is a different type of embedding trained with a linear classifier on top. The embeddings models are a frozen SentenceBert model, a frozen BERT-Large model, and a finetuned BERT-Large model. 
 
-To train these models, upload the ```colab-notebooks/model-training.ipynb``` notebook to colab and run all cells. This will train the three models mentioned above using the hyperparameters and splits of the models we report in the paper. The performance is printed as output to the training cells and the weights of the best models are saved in the ```/drive/MyDrive/spotify-misinformation/labeling-output``` folder on Google drive. 
+To train these models, upload the ```colab-notebooks/model-training.ipynb``` notebook to colab and run all cells. This will train the three models mentioned above using the hyperparameters and splits of the models we report in the paper. The performance is printed as output to the training cells and the weights of the best models are saved in the ```/drive/MyDrive/spotify-misinformation/modeling-output``` folder on Google drive. 
 
-From our results, the best performing model was SentenceBERT. To run this classifier on the matched_claims dataset that weren't labeled, upload the ```colab-notebooks/best-model-prediction.ipynb``` notebook and run all cells. This will predict the stance of each matched pair then save this information along with the ground truth politifact label and the misinformation label via our misinformation mapping schema defined in the paper. This output is located in XXX
+From our results, the best performing model was SentenceBERT. To run this classifier on the matched_claims data that wasn't labeled, upload the ```colab-notebooks/sbert-model-prediction.ipynb``` notebook and run all cells. This will predict the stance of each matched pair then save this information along with the ground truth politifact label and the misinformation label via our misinformation mapping schema defined in the paper. This output is located in ```/drive/MyDrive/spotify-misinformation/modeling-output/```.
 
 ### 7. Data Analysis
 

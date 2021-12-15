@@ -1,3 +1,5 @@
 # Ignore spotify dataset since it's too large
 
 podcasts-no-audio-13GB/*
+
+preprocessing/outputs/*
