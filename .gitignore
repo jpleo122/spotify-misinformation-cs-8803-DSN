@@ -3,3 +3,5 @@
 podcasts-no-audio-13GB/*
 
 preprocessing/outputs/*
+
+.DS_Store

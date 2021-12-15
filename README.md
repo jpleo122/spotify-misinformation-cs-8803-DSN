@@ -42,9 +42,9 @@ python politifact_scraping.py
 
 These scripts will produce two files within the ```preprocessing/outputs``` directory.
 
-```podcast_claims_context_2.tsv``` contains the podcast claims with 2 sentences on each side as surrounding context. 
+* ```podcast_claims_context_2.tsv``` contains the podcast claims with 2 sentences on each side as surrounding context. 
 
-```politifact_filtered.csv``` contains the fact checked politifact claims.
+* ```politifact_filtered.csv``` contains the fact checked politifact claims.
 
 ### 3. Google Drive and Google Colab setup
 
@@ -90,5 +90,5 @@ From our results, the best performing model was SentenceBERT. To run this classi
 
 ### 7. Data Analysis
 
-
+We provide some preliminary data analysis of the matched claims, manually labeled claims, and predicted matched claims within the ```colab-notebooks/data-analysis.ipynb``` notebook. Run all cells to see various visualizations we used within our paper and final presentation. 
 
